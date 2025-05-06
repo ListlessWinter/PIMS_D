@@ -29,7 +29,7 @@ const Login = () => {
     authInstance.signIn().then((googleUser) => {
       const token = googleUser.getAuthResponse().access_token;
 
-      fetch("https://pims-d.vercel.app/auth/google", {
+      fetch("https://pims-d.onrender.com/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
@@ -49,8 +49,8 @@ const Login = () => {
     e.preventDefault();
 
     const endpoint = isRegistering
-      ? "https://pims-d.vercel.app/auth/register"
-      : "https://pims-d.vercel.app/auth/manual";
+      ? "https://pims-d.onrender.com/auth/register"
+      : "https://pims-d.onrender.com/auth/manual";
 
     const payload = isRegistering
       ? { name, email, password }
