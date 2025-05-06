@@ -12,13 +12,12 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://localhost:3001", "https://pims-d-f.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: ["http://localhost:3000", "http://localhost:3001", "https://pims-d-f.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
+app.options("*", cors()); // ✅ Allow preflight
 
 app.use(passport.initialize());
 
@@ -31,27 +30,17 @@ mongoose.connect('mongodb+srv://Dolera:april123@cluster0.fp1ojbt.mongodb.net/?re
     useUnifiedTopology: true
 })
 .then(() => console.log('MongoDB connected'))
-.catch((err) => console.error('MongoDB connection error:', err));
-
-// Server Status :3
-app.get("/", (req, res) => {
-    res.json("Server Running");
+.catch((err) => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1); // Exit if DB fails
 });
 
-// Test Route
+// Root Route
 app.get("/", (req, res) => {
     res.send("API is running...");
 });
 
-// Server Start
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
-
-
-
-
-// Create inventory item
+// CRUD for Inventory
 app.post("/inventory", async (req, res) => {
     try {
       const newItem = new Inventory(req.body);
@@ -60,34 +49,43 @@ app.post("/inventory", async (req, res) => {
     } catch (err) {
       res.status(400).json({ message: "Error creating item", error: err });
     }
-  });
-  
-  // Read all inventory items
-  app.get("/inventory", async (req, res) => {
+});
+
+app.get("/inventory", async (req, res) => {
     try {
       const items = await Inventory.find();
       res.json(items);
     } catch (err) {
       res.status(500).json({ message: "Error fetching items", error: err });
     }
-  });
-  
-  // Update item
-  app.put("/inventory/:id", async (req, res) => {
+});
+
+app.put("/inventory/:id", async (req, res) => {
     try {
       const updated = await Inventory.findByIdAndUpdate(req.params.id, req.body, { new: true });
       res.json(updated);
     } catch (err) {
       res.status(400).json({ message: "Error updating item", error: err });
     }
-  });
-  
-  // Delete item
-  app.delete("/inventory/:id", async (req, res) => {
+});
+
+app.delete("/inventory/:id", async (req, res) => {
     try {
       await Inventory.findByIdAndDelete(req.params.id);
       res.json({ message: "Item deleted" });
     } catch (err) {
       res.status(400).json({ message: "Error deleting item", error: err });
     }
-  });
+});
+
+// Ignore favicon
+app.get('/favicon.ico', (req, res) => res.status(204));
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err.stack);
+  res.status(500).json({ message: "Internal Server Error", error: err.message });
+});
+
+// Server
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
