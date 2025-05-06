@@ -32,7 +32,7 @@ export default function Home() {
 
   const fetchItems = async () => {
     try {
-      const res = await fetch("https://pims-d.onrender/inventory");
+      const res = await fetch("https://pims-d.onrender.com/inventory");
       const data = await res.json();
       setItems(data);
     } catch (err) {
@@ -60,8 +60,8 @@ export default function Home() {
     e.preventDefault();
     const method = editingId ? "PUT" : "POST";
     const url = editingId
-      ? `https://pims-d.onrender/inventory/${editingId}`
-      : `https://pims-d.onrender/inventory`;
+      ? `https://pims-d.onrender.com/inventory/${editingId}`
+      : `https://pims-d.onrender.com/inventory`;
 
     try {
       await fetch(url, {
@@ -109,7 +109,7 @@ export default function Home() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`https://pims-d.onrender/inventory/${id}`, {
+      await fetch(`https://pims-d.onrender.com/inventory/${id}`, {
         method: "DELETE",
       });
       fetchItems();
