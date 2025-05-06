@@ -26,9 +26,17 @@ app.use(passport.initialize());
 app.use("/auth", authRoutes);
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err));
+mongoose.connect('mongodb+srv://Dolera:april123@cluster0.fp1ojbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected'))
+.catch((err) => console.error('MongoDB connection error:', err));
+
+// Server Status :3
+app.get("/", (req, res) => {
+    res.json("Server Running");
+});
 
 // Test Route
 app.get("/", (req, res) => {
