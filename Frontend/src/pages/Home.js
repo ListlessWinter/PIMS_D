@@ -31,7 +31,7 @@ export default function Home() {
 
   const fetchItems = async () => {
     try {
-      const res = await fetch("http://localhost:5000/inventory");
+      const res = await fetch("https://pims-d.vercel.app/inventory");
       const data = await res.json();
       setItems(data);
     } catch (err) {
@@ -49,8 +49,8 @@ export default function Home() {
     e.preventDefault();
     const method = editingId ? "PUT" : "POST";
     const url = editingId
-      ? `http://localhost:5000/inventory/${editingId}`
-      : `http://localhost:5000/inventory`;
+      ? `https://pims-d.vercel.app/api/inventory/${editingId}`
+      : `https://pims-d.vercel.app/inventory`;
 
     try {
       await fetch(url, {
@@ -95,7 +95,7 @@ export default function Home() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/inventory/${id}`, {
+      await fetch(`https://pims-d.vercel.app/inventory/${id}`, {
         method: "DELETE",
       });
       fetchItems();
