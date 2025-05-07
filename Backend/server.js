@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001", "https://pims-d-f.vercel.app", "https://docsys.onrender.com"],
+  origin: ["http://localhost:3000", "http://localhost:3001", "https://pims-d-f.vercel.app", "https://docsys.onrender.com", "https://docsys.onrender.com/home"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
