@@ -1,31 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 .container {
     display: flex;
-    min-height: 100vh;
+    height: auto;
+    width: auto;
   }
   
   /* Sidebar (Dashboard) */
   .sidebar {
-    width: 247px; /* Fixed width for sidebar */
-    padding: 20px;
+    position: fixed;
+    padding: 25px;
+    height: 100%;
+    width: 200px;
+    background-color: #ffffff;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #d9d9d9; /* Light gray right border line */
     z-index: 20; /* HIGHER to appear on top */
-    padding-top: 60px; /* Push content below the overlapped navbar */
+    padding-top: 100px; /* Push content below the overlapped navbar */
   }
   
   .sidebar h2 {
-    font-size: 24px;
+    font-size: auto;
     color: #0077B6;
   }
   
   .sidebar ul {
+    margin-top: 10%;
     list-style-type: none;
     padding: 0;
+    height: 500px;
   }
   
   .sidebar ul li {
+    padding: 10px;
     margin: 15px 0;
+    border-radius: 5px;
+    border-color: #D7D7D7;
+    border-style: solid;
   }
   
   .sidebar ul li a {
@@ -37,23 +47,155 @@
   .sidebar ul li a:hover {
     color: #0077B6;
   }
+
+  .Logo-Sidebar{
+    position: absolute;
+    height: 5px;
+    width: 150px;
+    padding: 30px;
+    background-image: url('../Image/Group\ 47951.png');
+    background-repeat: no-repeat;
+    background-size: 150px;
+    top: 10px;
+    left: 50px;
+  }
+
+  .Right-content {
+    height: auto;
+    margin-left: 250px;
+  }
+
+  .Header {
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 19px;
+    padding: 20px;
+    border-style: solid;
+    border-color: #D7D7D7;
+    background-color: #ffffff;
+    z-index: 1;
+  }
   
+  .Profile-box {
+    display:flex;
+    position: absolute;
+    background-color: #333;
+    right: 5%;
+    top: 5px;
+    padding: 5px;
+    height: 35px;
+    width: 150px;
+    border-color: #989898;
+    border-style: solid;
+    border-radius: 12px;
+    background-color: #F8F6F6;
+  }
+
+  .profile {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    width:35px;
+    height: 35px;
+    background-color: #333;
+    border-radius: 50%;
+  }
+  .Profile-Logout{
+    position: absolute;
+    width:100px;
+    right: 10px;
+  }
+
+  .Logout{
+    position: absolute;
+    width:100px;
+    right: 0;
+  }
+
   /* Main content area */
   .main-content {
-    flex: 1;
+    margin-top: 61px;
+    height: 100%;
     padding: 20px;
     background-color: #ffffff;
   }
   
+  .Footer {
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 70px;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .add {
+    position: absolute;
+    right: 2%;
+  }
   /* Styling for the rest of the page (form, table) */
-  h1, h2 {
+  h1 {
     color: #606060;
     font-family: 'Inter', sans-serif;
     font-size: 36px;
     font-weight: 800;
-  }
   
-  button {
+}
+
+  .Data_Label {
+    color: #606060;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+  }
+
+  .DataName {
+    display: flex;
+    position: sticky;
+    top: 63px;
+    background-color: #ffffff;
+    height: 100px;
+    padding-top: 0.5px;
+    z-index: 1;
+  }
+
+  .Sort {
+    right: 40%;   
+    position: absolute;
+    margin-top: 30px;
+    width: 15%;
+    padding: 5px;
+    border-color: #0077B6;
+    border-style: solid;
+    border-radius: 12px;
+    background-color: #F8F6F6;
+  }
+
+  .Search {
+    right: 5%;
+    position: absolute;
+    margin-top: 30px;
+    width: 30%;
+    padding: 5px;
+    border-color: #0077B6;
+    border-style: solid;
+    border-radius: 12px;
+    background-color: #F8F6F6;
+
+  }
+  .DataName2{
+    position: sticky;
+    top: 130px;
+    z-index: 1;
+  }
+
+  .add-button-container, .Edit, .Delete, .Close, .Add-Update, .Logout{
+    position: relative;
+    margin-right: 50px;
     padding: 10px 15px;
     background-color: #0077B6;
     color: white;
@@ -61,10 +203,12 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
-  button:hover {
-    background-color: #005f8a;
+
+  .add-button-container:hover, .Edit:hover, .Delete:hover, .Close:hover, .Add-Update:hover, .Logout:hover{
+    background-color: #0fde84;
   }
+  
+
   
   form input, form button {
     font-family: "Inter", sans-serif;
@@ -73,6 +217,10 @@
     font-size: 16px;
     border-radius: 15px;
     border: 1px solid #2088Bf;
+  }
+
+  form input:hover{
+    background-color: #0fde84;
   }
   
   form input {
@@ -85,6 +233,7 @@
   /* Table styling */
   table {
     width: 100%;
+    border-collapse: collapse;
   }
   
   thead th {
@@ -108,6 +257,12 @@
     text-align: center;
     border-bottom: 1px solid #d9d9d9;
   }
+
+  tbody tr:hover td {
+    background-color: #D9D9D9;
+    border: 0;
+  }
+
   
   td button {
     width: 85px;           /* Explicit width */
@@ -116,6 +271,7 @@
     font-size: 14px;
     border-radius: 12px;
     cursor: pointer;
+    position: sticky;
   }  
   
   td button:hover {
@@ -134,45 +290,51 @@
     align-items: center;
     z-index: 1000; /* Ensure modal appears above other content */
   }
+  .modal input{
+    color:#606060;
+  }
+  .modal input:hover{
+    background-color: #D9D9D9;
+  }
+
+  .Add-Update{
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+  }
+
+  .Close{
+    background-color: #ffffff;
+    color: #005f8a;
+    position: absolute;
+    right: -30px;
+    top: 20px;
+  }
+
+  .Delete{
+    position: absolute;
+    bottom: 5px;
+    right: 90px;
+  }
   
   /* Modal Styling */
   .modal {
     background-color: white;
     padding: 20px;
-    width: 770px;
-    height: 426px;
+    width: 790px;
+    height: 500px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-  
-  button {
-    padding: 10px 15px;
-    background-color: #0077B6;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-style: "Inter", sans-serif;
-    font-weight: 700;
-  }
-  
-  button:hover {
-    background-color: #005f8d;
+    position: fixed;
   }
   
   .add-button-container {
     margin-bottom: 20px;
     border-radius: 12px;
     display: flex;          /* Flexbox for layout */
-    justify-content: flex-start; /* Aligns button to the left */
-    width: 100%;            /* Ensures it takes full width */
+    justify-content: center;       /* Ensures it takes full width */
     margin-top: 10px;
     padding-left: 15px;     /* Creates space on the left side */
-  }
-  
-  
-  .add-button-container button {
     width: 85px;            /* Fixed width */
     height: 33px;           /* Fixed height */
   }

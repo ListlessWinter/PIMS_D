@@ -1,0 +1,125 @@
+* {
+    font-family: 'Inter', sans-serif;
+    color: #0077B6;
+}
+
+body {
+    background-image:url('../Image/Group\ 47950.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.box {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 8%;
+    border-radius: 12px;
+    text-align: center;
+    border-style: solid;
+    border-color: #0077B6;
+}
+
+.Logo {
+    background-image: url('../Image/Group\ 47951.png');
+    padding: 30px;
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: center;
+}
+
+.input {
+    display: block;    
+    width: 70%;
+    margin-bottom: 10px;
+    position: center;
+    margin: auto;
+    text-align: left;
+}
+
+.button {
+    width: 30%;
+    padding: 6px 12px;
+    margin: 10px 0;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #0077B6;
+    background-color: #0077B6;
+    color: aliceblue;
+}
+
+.GoogleButton {
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #0077B6;
+    background-color: #ffffff;
+}
+
+.GoogleImage {
+    display: inline;
+    background-image: url('../Image/7123025_logo_google_g_icon.png');
+    padding: 25px;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: Left;
+}
+
+.Google {
+    display: inline;
+    width: 100px;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #0077B6;
+}
+
+input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #0077B6;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #0077B6;
+}
+
+.BottomPart {
+    text-align: center;
+}
+
+button[type=button] {
+    cursor: pointer;
+    border: none;
+    background: none;
+    text-decoration: underline;
+}
