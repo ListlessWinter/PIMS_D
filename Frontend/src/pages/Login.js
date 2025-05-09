@@ -30,7 +30,7 @@ const Login = () => {
     authInstance.signIn().then((googleUser) => {
       const token = googleUser.getAuthResponse().access_token;
 
-      fetch("https://pims-d.onrender.com/auth/google", {
+      fetch("http://localhost:5000/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
@@ -83,58 +83,60 @@ const Login = () => {
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "400px", margin: "auto" }}>
+    <div className="box">
+      <div className="Logo"></div>
       <h2>{isRegistering ? "Register" : "Login"}</h2>
 
       {/* Manual Login/Register Form */}
       <form onSubmit={handleManualLogin}>
         {isRegistering && (
-          <div>
+          <div className="input">
             <label>Name:</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              style={{ display: "block", width: "100%", marginBottom: "10px" }}
+              //style={{ display: "block", width: "100%", marginBottom: "10px" }}
             />
           </div>
         )}
-        <div>
+        <div className="input">
           <label>Email:</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{ display: "block", width: "100%", marginBottom: "10px" }}
+            //style={{ display: "block", width: "100%", marginBottom: "10px" }}
           />
         </div>
-        <div>
+        <div className="input">
           <label>Password:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={{ display: "block", width: "100%", marginBottom: "10px" }}
+            //style={{ display: "block", width: "100%", marginBottom: "10px" }}
           />
         </div>
-        <button type="submit" style={{ width: "100%", marginBottom: "10px" }}>
+        <button className="button">
           {isRegistering ? "Register" : "Login"}
         </button>
       </form>
 
-      <button onClick={handleGoogleLogin} style={{ width: "100%", marginBottom: "10px" }}>
-        Sign in with Google
+      <button onClick={handleGoogleLogin} className="GoogleButton" type="submit">
+        <div className="GoogleImage"></div>
+        <div className="Google">Google</div>
       </button>
 
-      <p style={{ textAlign: "center" }}>
+      <p className="BottomPart">
         {isRegistering ? "Already have an account?" : "Don't have an account?"}{" "}
         <button
           type="button"
           onClick={() => setIsRegistering(!isRegistering)}
-          style={{ background: "none", color: "blue", border: "none", cursor: "pointer" }}
+          //style={{ background: "none", color: "black", border: "none", cursor: "pointer" }}
         >
           {isRegistering ? "Login" : "Register"}
         </button>

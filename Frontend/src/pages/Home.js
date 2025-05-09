@@ -147,17 +147,29 @@ export default function Home() {
     <div className="container">
         {/* Sidebar (Dashboard) */}
         <div className="sidebar">
+          <div className="Logo-Sidebar"></div>
           <h2>Dashboard</h2>
           <ul>
             <li>Dashboard Overview</li>
             <li>Item Management</li>
             <li>Reports</li>
             <li>Settings</li>
-            <li><button onClick={handleLogout}>Logout</button></li>
           </ul>
         </div>
 
         {/* Main Content */}
+        <div className="Right-content">
+        <div className="Header">
+          <div className="Profile-box">
+            <div className="profile">
+
+            </div>
+            <div className="Profile-Logout">
+            <button className=" Logout" onClick={handleLogout}>Log out</button>
+            </div>
+          </div>
+        </div>
+
         <div className="main-content">
           {/* Modal (Form) */}
           {showModal && (
@@ -230,18 +242,17 @@ export default function Home() {
                     placeholder="Description"
                     value={form.description}
                     onChange={handleChange} />
-                  <button type="submit">{editingId ? "Update" : "Add"}</button>
-                  <button type="button" onClick={handleCloseModal}>Close</button>
+                  <button className="Add-Update" type="submit">{editingId ? "Update" : "Add"}</button>
+                  <button className= "Close" type="submit" onClick={handleCloseModal}>Close</button>
 
                   {/* Delete button only appears when editing */}
                   {editingId && (
-                    <button
-                      type="button"
+                    <button className="Delete"
+                      type="Submit"
                       onClick={() => {
                         handleDelete(editingId);
                         setShowModal(false);
                       } }
-                      style={{ backgroundColor: "red", color: "white", marginLeft: "10px" }}
                     >
                       Delete
                     </button>
@@ -252,12 +263,17 @@ export default function Home() {
           )}
           {/* Inventory List */}
           <section>
-            <h2>DATA</h2>
+          <div className="DataName">
+            <h2 className="Data_Label">DATA</h2>
+            <div className="Sort"> Sort </div>
+            <div className="Search"> Search </div>
+          </div>
+
             {loading ? (
               <p>Loading items...</p>
             ) : items.length > 0 ? (
               <table>
-                <thead>
+                <thead className="DataName2">
                   <tr>
                     <th>MEDICINE ID</th>
                     <th>NAME</th>
@@ -283,7 +299,7 @@ export default function Home() {
                       <td>{item.prescriptionRequired ? "Yes" : "No"}</td>
                       <td>{item.description}</td>
                       <td>
-                        <button onClick={() => handleEdit(item)}>Edit</button>
+                        <button className="Edit" onClick={() => handleEdit(item)}>Edit</button>
                       </td>
                     </tr>
                   ))}
@@ -293,11 +309,13 @@ export default function Home() {
               <p>No inventory items found.</p>
             )}
           </section>
-          <div className="add-button-container">
-            <button onClick={handleAddItemClick}>Add</button>
-          </div>
-
         </div>
+        <div className="Footer">
+          <div className="add">
+          <button onClick={handleAddItemClick} className="add-button-container">Add</button>
+          </div>
+        </div>
+      </div>
       </div>
   );
 }
