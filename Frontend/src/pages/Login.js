@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const clientId = "901238362479-qhi62371a9f08ma2jmlmbh1vbctruivj.apps.googleusercontent.com";
 
