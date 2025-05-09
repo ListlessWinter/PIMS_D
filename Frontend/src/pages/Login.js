@@ -30,7 +30,7 @@ const Login = () => {
     authInstance.signIn().then((googleUser) => {
       const token = googleUser.getAuthResponse().access_token;
 
-      fetch("http://localhost:5000/auth/google", {
+      fetch("https://pims-d.onrender.com/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
