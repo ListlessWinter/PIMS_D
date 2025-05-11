@@ -422,7 +422,7 @@ export default function Home() {
                       <th>NAME</th>
                       <th>BRAND</th>
                       <th>DOSAGE FORM</th>
-                      <th>DOSAGE</th>
+                      <th>STOCKS</th>
                       <th>PRICE</th>
                       <th>EXPIRATION DATE</th>
                       <th>PRESCRIPTION REQ.</th>
