@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 .container {
+  background-color: #ffffff;
     display: flex;
-    height: auto;
-    width: auto;
   }
   
   /* Sidebar (Dashboard) */
@@ -14,7 +13,7 @@
     background-color: #ffffff;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #d9d9d9; /* Light gray right border line */
-    z-index: 20; /* HIGHER to appear on top */
+    z-index: 2; /* HIGHER to appear on top */
     padding-top: 100px; /* Push content below the overlapped navbar */
   }
   
@@ -27,7 +26,6 @@
     margin-top: 10%;
     list-style-type: none;
     padding: 0;
-    height: 500px;
   }
   
   .sidebar ul li {
@@ -36,6 +34,10 @@
     border-radius: 5px;
     border-color: #D7D7D7;
     border-style: solid;
+  }
+  .sidebar ul:hover li:hover {
+    background-color:#D7D7D7;
+    cursor: pointer;
   }
   
   .sidebar ul li a {
@@ -62,7 +64,18 @@
 
   .Right-content {
     height: auto;
+    width: 100%;
     margin-left: 250px;
+  }
+
+  .Boxtable{
+    position: absolute;
+    margin-top: 150px;
+    overflow-y: scroll;
+    bottom: 80px;
+    top: 40px;
+    right: 0;
+    left: 270px;
   }
 
   .Header {
@@ -115,7 +128,6 @@
 
   /* Main content area */
   .main-content {
-    margin-top: 61px;
     height: 100%;
     padding: 20px;
     background-color: #ffffff;
@@ -142,7 +154,6 @@
     font-family: 'Inter', sans-serif;
     font-size: 36px;
     font-weight: 800;
-  
 }
 
   .Data_Label {
@@ -155,49 +166,63 @@
 
   .DataName {
     display: flex;
-    position: sticky;
-    top: 63px;
+    position: absolute;
     background-color: #ffffff;
-    height: 100px;
-    padding-top: 0.5px;
+    right: 0;
+    left: 270px;
+    top: 70px;
     z-index: 1;
   }
 
   .Sort {
-    right: 40%;   
+    right: 35%;   
     position: absolute;
     margin-top: 30px;
-    width: 15%;
+    width: 10%;
     padding: 5px;
     border-color: #0077B6;
     border-style: solid;
     border-radius: 12px;
     background-color: #F8F6F6;
+    font-size: 13px;
+    color: #606060;
   }
 
-  .Search {
-    right: 5%;
+  .Search input {
+    right: 80px;
     position: absolute;
     margin-top: 30px;
-    width: 30%;
+    width: 25%;
     padding: 5px;
-    border-color: #0077B6;
     border-style: solid;
     border-radius: 12px;
     background-color: #F8F6F6;
-
+    font-size: 13px;
+    color: #606060;
   }
+
   .DataName2{
     position: sticky;
-    top: 130px;
+    top: 0;
     z-index: 1;
+    background-color: #ffffff;
   }
 
-  .add-button-container, .Edit, .Delete, .Close, .Add-Update, .Logout{
+  .Edit, .Delete, .Close, .Add-Update, .Logout{
     position: relative;
     margin-right: 50px;
     padding: 10px 15px;
     background-color: #0077B6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .add-button-container{
+    position: relative;
+    margin-right: 50px;
+    padding: 10px 15px;
+    background-color: #18b540;
     color: white;
     border: none;
     border-radius: 5px;
@@ -208,8 +233,6 @@
     background-color: #0fde84;
   }
   
-
-  
   form input, form button {
     font-family: "Inter", sans-serif;
     padding: 10px;
@@ -217,10 +240,6 @@
     font-size: 16px;
     border-radius: 15px;
     border: 1px solid #2088Bf;
-  }
-
-  form input:hover{
-    background-color: #0fde84;
   }
   
   form input {
@@ -232,7 +251,8 @@
   }
   /* Table styling */
   table {
-    width: 100%;
+    table-layout: fixed;
+    width: auto;
     border-collapse: collapse;
   }
   
@@ -245,8 +265,10 @@
     text-align: center;
     white-space: nowrap;        /* Prevents line breaks */
     overflow: hidden;           /* Hides overflow text */
+    width: 150px;            /* 🔒 Fixed column width (customize as needed) */
+    height: 50px;            /* 🔒 Fixed row height */
+    padding: 8px;
 }
-
   
   tbody td {
     color: #606060;
@@ -256,6 +278,10 @@
     font-weight: 700;
     text-align: center;
     border-bottom: 1px solid #d9d9d9;
+    text-overflow: ellipsis;
+    width: 150px;            /* 🔒 Fixed column width (customize as needed) */
+    height: 50px;            /* 🔒 Fixed row height */
+    padding: 8px;
   }
 
   tbody tr:hover td {

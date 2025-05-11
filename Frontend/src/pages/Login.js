@@ -83,7 +83,8 @@ const Login = () => {
   };
 
   return (
-    <div className="box">
+    <div className="background">
+      <div className="box">
       <div className="Logo"></div>
       <h2>{isRegistering ? "Register" : "Login"}</h2>
 
@@ -141,6 +142,7 @@ const Login = () => {
           {isRegistering ? "Login" : "Register"}
         </button>
       </p>
+    </div>
     </div>
   );
 };
