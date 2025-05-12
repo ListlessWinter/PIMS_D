@@ -1,0 +1,98 @@
+.Profile-Content{
+    display: flex;
+    position: absolute;
+    padding: 20px;
+    top: 63px;
+    left: 250px;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.image{
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    height: 200px;
+    width: 250px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border-color: #D7D7D7;
+    border-style: solid;
+}
+.UserDeets{
+
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    left: 20px;
+    top: 250px;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 10px;
+    border-color: #D7D7D7;
+    border-style: solid;
+}
+
+.Name{
+    display: fixed;
+    margin-top: 20px;
+}
+.Admin-ID{
+    display: fixed;
+    margin-top: 20px;
+}
+
+.textbox{
+    margin-top: 5px;
+    height: 50px;
+    width: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-color: #D7D7D7;
+    border-style: solid;
+}
+.UserDeets2{
+    display: fixed;
+    width: 500px;
+    height: 200px;
+    margin-left: 270px;
+}
+
+.skeleton-loader {
+  max-width: 24rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton {
+  height: 0.625rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  margin-bottom: 0.625rem;
+}
+
+.skeleton-loader .skeleton:first-child {
+  height: 0.625rem;
+  width: 12rem;
+  margin-bottom: 1rem;
+}
+
+.skeleton-360 {
+  max-width: 22.5rem;
+}
+
+.skeleton-330 {
+  max-width: 20.625rem;
+}
+
+.skeleton-300 {
+  max-width: 18.75rem;
+}
+
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

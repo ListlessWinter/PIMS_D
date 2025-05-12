@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './HomePage.css';
+import Layout from '../Components/Layout';
 
 export default function Home() {
+  document.title = "PIMS | Home";
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [form, setForm] = useState({
@@ -19,35 +21,15 @@ export default function Home() {
 
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc"); // or "desc"
   const [sortType, setSortType] = useState("az");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
   const [isEditable, setIsEditable] = useState(false);
   const [originalItem, setOriginalItem] = useState(null);
+  const [username, setUsername] = useState("Admin");
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
-  const openModal = (item) => {
-    setOriginalItem({ ...item }); // Save original
-    setForm(item); 
-    setEditingId(item._id);
-    setIsEditable(false); // View-only mode by default
-    setShowModal(true);
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-    } else {
-      fetchItems();
-    }
-  }, [navigate]);
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const fetchItems = async () => {
     try {
@@ -57,15 +39,28 @@ export default function Home() {
     } catch (err) {
       console.error("Failed to fetch items:", err);
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000); // Delay for 3 seconds
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedUsername = localStorage.getItem("username");
+    if (!token) {
+      navigate("/login");
+    } else {
+      setUsername(storedUsername || "Admin");
+      fetchItems();
+    }
+  }, [navigate]);
+
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value, type, checked } = e.target;
     const transformedValue =
       type === "checkbox"
-        ? e.target.checked
+        ? checked
         : typeof value === "string"
         ? value.toUpperCase()
         : value;
@@ -86,35 +81,21 @@ export default function Home() {
         body: JSON.stringify(form),
       });
 
-      // Refresh item list with updated version
       await fetchItems();
 
       if (editingId) {
-        // After update, switch back to view mode
         setIsEditable(false);
       } else {
-        // After add, close modal and reset form
         setShowModal(false);
-        setForm({
-          medicineId: "",
-          name: "",
-          brand: "",
-          dosageForm: "",
-          quantity: "",
-          price: "",
-          expirationDate: "",
-          prescriptionRequired: false,
-          description: "",
-        });
+        resetForm();
       }
-
     } catch (err) {
       console.error("Error saving item:", err);
     }
   };
 
   const handleEdit = (item) => {
-    setOriginalItem({ ...item }); // Save original
+    setOriginalItem({ ...item });
     setForm({
       medicineId: item.medicineId,
       name: item.name,
@@ -128,7 +109,7 @@ export default function Home() {
     });
     setEditingId(item._id);
     setShowModal(true);
-    setIsEditable(false); // Start in view mode
+    setIsEditable(false);
   };
 
   const handleDelete = async (id) => {
@@ -144,10 +125,18 @@ export default function Home() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("/"); 
   };
 
   const handleAddItemClick = () => {
+    resetForm();
+    setEditingId(null);
+    setOriginalItem(null);
+    setIsEditable(true);
+    setShowModal(true);
+  };
+
+  const resetForm = () => {
     setForm({
       medicineId: "",
       name: "",
@@ -159,15 +148,10 @@ export default function Home() {
       prescriptionRequired: false,
       description: "",
     });
-    setEditingId(null);            // Make sure we're not editing
-    setOriginalItem(null);         // Clear original item
-    setIsEditable(true);           // Allow immediate input
-    setShowModal(true);            // Show the modal
   };
 
   const handleCloseModal = () => {
     if (editingId && originalItem) {
-      // Revert form to original data in edit mode
       setForm({
         medicineId: originalItem.medicineId,
         name: originalItem.name,
@@ -179,60 +163,49 @@ export default function Home() {
         prescriptionRequired: originalItem.prescriptionRequired,
         description: originalItem.description,
       });
-      setIsEditable(false); // Back to view mode
-    } else {
-      // In add mode, just close and reset
-      setForm({
-        medicineId: "",
-        name: "",
-        brand: "",
-        dosageForm: "",
-        quantity: "",
-        price: "",
-        expirationDate: "",
-        prescriptionRequired: false,
-        description: "",
-      });
-      setEditingId(null);
       setIsEditable(false);
+    } else {
+      resetForm();
+      setEditingId(null);
       setOriginalItem(null);
+      setIsEditable(false);
       setShowModal(false);
     }
 
-    setShowModal(false); // Finally close modal
+    setShowModal(false);
   };
 
+  const filteredItems = items.filter((item) => {
+    const q = searchQuery.toLowerCase();
+    return (
+      item.name.toLowerCase().includes(q) ||
+      item.brand.toLowerCase().includes(q) ||
+      item.medicineId.toLowerCase().includes(q)
+    );
+  });
+
+  const sortedItems = filteredItems.sort((a, b) => {
+    switch (sortType) {
+      case "az":
+        return a.name.localeCompare(b.name);
+      case "za":
+        return b.name.localeCompare(a.name);
+      case "closest":
+        return new Date(a.expirationDate) - new Date(b.expirationDate);
+      case "farthest":
+        return new Date(b.expirationDate) - new Date(a.expirationDate);
+      default:
+        return 0;
+    }
+  });
+
   return (
-    <div className="container">
-      {/* Sidebar (Dashboard) */}
-      <div className="sidebar">
-        <div className="Logo-Sidebar"></div>
-        <h2>Main</h2>
-        <ul>
-          <li>Dashboard</li>
-          <li>Data</li>
-        </ul>
-        <h2>Support</h2>
-        <ul>
-          <li>Reports</li>
-          <li>Settings</li>
-        </ul>
-      </div>
-
-      {/* Main Content */}
-      <div className="Right-content">
-        <div className="Header">
-          <div className="Profile-box">
-            <div className="profile"></div>
-            <div className="Profile-Logout">
-              <button className=" Logout" onClick={handleLogout}>Log out</button>
-            </div>
-          </div>
-        </div>
-
-        <div className="main-content">
-          {/* Modal (Form) */}
-          {showModal && (
+    <Layout username={username} onLogout={handleLogout}>
+      <div className="container">
+        <div className="Right-content">
+          <div className="main-content">
+            {/* Modal */}
+            {showModal && (
             <div className="modal-overlay">
               <div className="modal">
                 <h2>{editingId ? "Item Details" : "Add Item"}</h2>
@@ -358,145 +331,177 @@ export default function Home() {
             </div>
           )}
 
-          {/* Inventory List */}
-          <section>
-            <div className="DataName">
-              <h2 className="Data_Label">DATA</h2>
-              <div className="dropdown" ref={dropdownRef}>
-                <button className="Sort" onClick={toggleDropdown}>SORT ▾</button>
-                {dropdownOpen && (
-                  <div className="SortContent">
-                    <label className="SortBox">
-                      <input
-                        type="checkbox"
-                        checked={sortType === "az"}
-                        onChange={() => setSortType("az")}
-                      />
-                      Medicine name A - Z
-                    </label>
-                    <label className="SortBox">
-                      <input
-                        type="checkbox"
-                        checked={sortType === "za"}
-                        onChange={() => setSortType("za")}
-                      />
-                      Medicine name Z - A
-                    </label>
-                    <label className="SortBox">
-                      <input
-                        type="checkbox"
-                        checked={sortType === "closest"}
-                        onChange={() => setSortType("closest")}
-                      />
-                      Medicine closest to expire
-                    </label>
-                    <label className="SortBox">
-                      <input
-                        type="checkbox"
-                        checked={sortType === "farthest"}
-                        onChange={() => setSortType("farthest")}
-                      />
-                      Medicine farthest to expire
-                    </label>
-                  </div>
-                )}
+            {/* Inventory List */}
+            <section>
+              <div className="DataName">
+                <h2 className="Data_Label">DATA</h2>
+                <div className="dropdown">
+                  <button className="Sort" onClick={toggleDropdown}>SORT ▾</button>
+                  {dropdownOpen && (
+                    <div className="SortContent">
+                      {[ 
+                        { label: "Medicine name A - Z", value: "az" },
+                        { label: "Medicine name Z - A", value: "za" },
+                        { label: "Medicine closest to expire", value: "closest" },
+                        { label: "Medicine farthest to expire", value: "farthest" },
+                      ].map(({ label, value }) => (
+                        <label className="SortBox" key={value}>
+                          <input
+                            type="checkbox"
+                            checked={sortType === value}
+                            onChange={() => setSortType(value)}
+                          />
+                          {label}
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="Search">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="Search">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-            </div>
 
-            {loading ? (
-              <p>Loading items...</p>
-            ) : items.length > 0 ? (
-              <div className="Boxtable">
-                <table>
-                  <thead className="DataName2">
-                    <tr>
-                      <th>MEDICINE ID</th>
-                      <th>NAME</th>
-                      <th>BRAND</th>
-                      <th>DOSAGE FORM</th>
-                      <th>STOCKS</th>
-                      <th>PRICE</th>
-                      <th>EXPIRATION DATE</th>
-                      <th>PRESCRIPTION REQ.</th>
-                      <th>DESCRIPTION</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {items.filter((item) => {
-                      const q = searchQuery.toLowerCase();
-                      return (
-                        item.name.toLowerCase().includes(q) ||
-                        item.brand.toLowerCase().includes(q) ||
-                        item.medicineId.toLowerCase().includes(q)
-                      );
-                    }).length > 0 ? (
-                      items
-                        .filter((item) => {
-                          const q = searchQuery.toLowerCase();
-                          return (
-                            item.name.toLowerCase().includes(q) ||
-                            item.brand.toLowerCase().includes(q) ||
-                            item.medicineId.toLowerCase().includes(q)
-                          );
-                        })
-                        .sort((a, b) => {
-                          switch (sortType) {
-                            case "az":
-                              return a.name.localeCompare(b.name);
-                            case "za":
-                              return b.name.localeCompare(a.name);
-                            case "closest":
-                              return new Date(a.expirationDate) - new Date(b.expirationDate);
-                            case "farthest":
-                              return new Date(b.expirationDate) - new Date(a.expirationDate);
-                            default:
-                              return 0;
-                          }
-                        })
-                        .map((item) => (
-                          <tr key={item._id} onClick={() => handleEdit(item)} style={{ cursor: "pointer" }}>
+              {loading ? (
+                <div className="Loading">
+                  <table>
+                    <thead className="Loading-top">
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <thead className="Loading-top2">
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <thead className="Loading-top3">
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <thead className="Loading-top4">
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <thead className="Loading-top5">
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    
+                  </table>
+                </div>
+              ) : items.length > 0 ? (
+                <div className="Boxtable">
+                  <table>
+                    <thead className="DataName2">
+                      <tr>
+                        <th>MEDICINE ID</th>
+                        <th>NAME</th>
+                        <th>BRAND</th>
+                        <th>DOSAGE FORM</th>
+                        <th>STOCKS</th>
+                        <th>PRICE</th>
+                        <th>EXPIRATION DATE</th>
+                        <th>PRESCRIPTION REQ.</th>
+                        <th>DESCRIPTION</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sortedItems.length > 0 ? (
+                        sortedItems.map((item) => (
+                          <tr
+                            key={item._id}
+                            onClick={() => handleEdit(item)}
+                            style={{ cursor: "pointer" }}
+                          >
                             <td>{item.medicineId}</td>
                             <td>{item.name}</td>
                             <td>{item.brand}</td>
                             <td>{item.dosageForm}</td>
                             <td>{item.quantity}</td>
-                            <td>${item.price}</td>
+                            <td>₱{item.price}</td>
                             <td>{item.expirationDate?.split("T")[0]}</td>
                             <td>{item.prescriptionRequired ? "Yes" : "No"}</td>
                             <td>{item.description}</td>
                           </tr>
                         ))
-                    ) : (
-                      <tr>
-                        <td colSpan="10" style={{ textAlign: "center", padding: "1rem", color: "gray" }}>
-                          No data found.
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <p>No inventory items found.</p>
-            )}
-          </section>
-        </div>
+                      ) : (
+                        <tr>
+                          <td colSpan="10" style={{ textAlign: "center", padding: "1rem", color: "gray" }}>
+                            No data found.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p>No inventory items found.</p>
+              )}
+            </section>
+          </div>
 
-        <div className="Footer">
-          <div className="add">
-            <button onClick={handleAddItemClick} className="add-button-container">Add</button>
+          <div className="Footer">
+            <div className="add">
+              <button onClick={handleAddItemClick} className="add-button-container">Add</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
