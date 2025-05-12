@@ -67,9 +67,9 @@ const Login = () => {
         if (data.token || data.success) {
           if (data.token) {
             localStorage.setItem("token", data.token);
-            localStorage.setItem("username", data.user.name); // Store the user's name
+            localStorage.setItem("username", data.user.name); //Store the user's name
             navigate("/home");
-          }  else {
+          } else {
             alert("Registration successful. Please log in.");
             setIsRegistering(false);
             setName("");
@@ -84,8 +84,7 @@ const Login = () => {
   };
 
   return (
-    <div className="background">
-      <div className="box">
+    <div className="box">
       <div className="Logo"></div>
       <h2>{isRegistering ? "Register" : "Login"}</h2>
 
@@ -143,7 +142,6 @@ const Login = () => {
           {isRegistering ? "Login" : "Register"}
         </button>
       </p>
-    </div>
     </div>
   );
 };

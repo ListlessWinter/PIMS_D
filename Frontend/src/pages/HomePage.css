@@ -1,31 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 .container {
+  background-color: #ffffff;
     display: flex;
-    min-height: 100vh;
   }
   
   /* Sidebar (Dashboard) */
   .sidebar {
-    width: 247px; /* Fixed width for sidebar */
-    padding: 20px;
+    position: fixed;
+    padding: 25px;
+    height: 100%;
+    width: 200px;
+    background-color: #ffffff;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #d9d9d9; /* Light gray right border line */
-    z-index: 20; /* HIGHER to appear on top */
-    padding-top: 60px; /* Push content below the overlapped navbar */
+    z-index: 2; /* HIGHER to appear on top */
+    padding-top: 100px; /* Push content below the overlapped navbar */
   }
   
   .sidebar h2 {
-    font-size: 24px;
+    font-size: auto;
     color: #0077B6;
   }
   
   .sidebar ul {
+    margin-top: 10%;
     list-style-type: none;
     padding: 0;
   }
   
   .sidebar ul li {
+    padding: 10px;
     margin: 15px 0;
+    border-radius: 5px;
+    border-color: #D7D7D7;
+    border-style: solid;
+  }
+  .sidebar ul:hover li:hover {
+    background-color:#D7D7D7;
+    cursor: pointer;
   }
   
   .sidebar ul li a {
@@ -37,33 +49,249 @@
   .sidebar ul li a:hover {
     color: #0077B6;
   }
+
+  .Logo-Sidebar{
+    position: absolute;
+    height: 5px;
+    width: 150px;
+    padding: 30px;
+    background-image: url('../Image/Group\ 47951.png');
+    background-repeat: no-repeat;
+    background-size: 150px;
+    top: 10px;
+    left: 50px;
+  }
+
+  .Right-content {
+    height: auto;
+    width: 100%;
+    margin-left: 250px;
+  }
+
+  .Boxtable{
+    position: absolute;
+    overflow: visible;
+    margin-top: 150px;
+    overflow-y: scroll;
+    bottom: 80px;
+    top: 40px;
+    right: 0;
+    left: 270px;
+  }
+
+  .Header {
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 19px;
+    padding: 20px;
+    border-style: solid;
+    border-color: #d7d7d7;
+    background-color: #ffffff;
+    z-index: 1;
+  }
   
+  .Profile-box {
+    display:flex;
+    position: absolute;
+    background-color: #333;
+    right: 5%;
+    top: 5px;
+    padding: 5px;
+    height: 35px;
+    width: 150px;
+    border-color: #989898;
+    border-style: solid;
+    border-radius: 12px;
+    background-color: #F8F6F6;
+  }
+
+  .profile {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    width:35px;
+    height: 35px;
+    background-color: #333;
+    border-radius: 50%;
+  }
+  .Profile-Logout{
+    position: absolute;
+    width:100px;
+    right: 10px;
+  }
+
+  .Logout{
+    position: absolute;
+    width:100px;
+    right: 0;
+  }
+
   /* Main content area */
   .main-content {
-    flex: 1;
+    height: 100%;
     padding: 20px;
     background-color: #ffffff;
   }
   
+  .Footer {
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 70px;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .add {
+    position: absolute;
+    right: 2%;
+  }
   /* Styling for the rest of the page (form, table) */
-  h1, h2 {
+  h1 {
     color: #606060;
     font-family: 'Inter', sans-serif;
     font-size: 36px;
     font-weight: 800;
+}
+
+  .Data_Label {
+    color: #606060;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
   }
-  
-  button {
+
+  .DataName {
+    display: flex;
+    position: absolute;
+    background-color: #ffffff;
+    right: 0;
+    left: 270px;
+    top: 70px;
+  }
+
+  .Sort {
+    right: 35%;   
+    position: absolute;
+    margin-top: 30px;
+    width: 174px;
+    padding: 5px;
+    border-color: #0077B6;
+    border-style: solid;
+    border-radius: 12px;
+    background-color: #F8F6F6;
+    font-size: 13px;
+    color: #606060;
+    z-index: 1;
+  }
+  .SortContent{
+    display:flex;
+    flex-direction: column;
+    height: auto;
+    position: absolute;
+    right: 35%;   
+    margin-top: 65px;
+    width: 170px;
+    border-color: #0077B6;
+    border-style: solid;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #606060;
+    background-color: #ffffff;
+    z-index: 2;
+  }
+
+  .SortBox {
+    padding: 5px;
+    color:#005f8a;
+    cursor: pointer;
+    font-size: 10px;
+  }
+
+  .SortBox input[type="checkbox"] {
+  margin: 7px;
+  margin-left: 8px;
+  transform: scale(1.2);
+}
+
+  .SortBox:hover, .SortBox1:hover{
+    background-color:#D7D7D7;
+    border-radius: 12px;
+  }
+
+  .Search input {
+    right: 80px;
+    position: absolute;
+    margin-top: 30px;
+    width: 25%;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 12px;
+    background-color: #F8F6F6;
+    font-size: 13px;
+    color: #606060;
+  }
+
+  .Tablebox{
+    position: absolute;
+    margin-top: 140px;
+    overflow-y: scroll;
+    bottom: 80px;
+    top: 40px;
+    right: 0;
+    left: 270px;
+    background-color: #007bff;
+  }
+
+  .DataName2{
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    overflow: visible;
+  }
+
+ .Logout{
+    position: relative;
+    margin-right: 50px;
     padding: 10px 15px;
-    background-color: #0077B6;
+    background-color: red;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
-  
-  button:hover {
-    background-color: #005f8a;
+  button.Edit{
+    right: 20px;
+    bottom: 5px;
+    position: absolute;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .add-button-container{
+    position: relative;
+    margin-right: 50px;
+    padding: 10px 15px;
+    background-color: #18b540;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .add-button-container:hover, button.Edit:hover, button.Delete:hover, button.Close:hover, .Add-Update:hover, .Logout:hover{
+    background-color:#777777;
+    color: white;
   }
   
   form input, form button {
@@ -84,7 +312,9 @@
   }
   /* Table styling */
   table {
-    width: 100%;
+    table-layout: fixed;
+    width: auto;
+    border-collapse: collapse;
   }
   
   thead th {
@@ -96,18 +326,29 @@
     text-align: center;
     white-space: nowrap;        /* Prevents line breaks */
     overflow: hidden;           /* Hides overflow text */
-}
-
+    width: 150px;            /* 🔒 Fixed column width (customize as needed) */
+    height: 50px;            /* 🔒 Fixed row height */
+    padding: 8px;
+  }
   
   tbody td {
     color: #606060;
-    padding: 10px;
+    padding: 5px;
     font-family: "Inter", sans-serif;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 700;
     text-align: center;
     border-bottom: 1px solid #d9d9d9;
+    text-overflow: ellipsis;
+    width: 150px;            /* 🔒 Fixed column width (customize as needed) */
+    height: 40px;            /* 🔒 Fixed row height */
+    padding: 8px;
   }
+
+  tbody tr:hover td {
+    background-color:#D7D7D7;
+  }
+
   
   td button {
     width: 85px;           /* Explicit width */
@@ -116,6 +357,7 @@
     font-size: 14px;
     border-radius: 12px;
     cursor: pointer;
+    z-index: -1;
   }  
   
   td button:hover {
@@ -134,47 +376,201 @@
     align-items: center;
     z-index: 1000; /* Ensure modal appears above other content */
   }
+  .modal input{
+    color:#606060;
+  }
+  .modal input:hover{
+    background-color: #D9D9D9;
+  }
+
+  .Add-Update{
+    position: absolute;
+    border: none;
+    right: 0;
+    bottom: 5px;
+    background-color: orange;
+    color: white;
+    border-radius: 5px;
+    right: 20px;
+    text-decoration: none;
+  }
+
+  button.Close{
+    background-color:red;
+    color: #ffffff;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  button.Delete{
+    position: absolute;
+    bottom: 5px;
+    right: 100px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
   
   /* Modal Styling */
   .modal {
     background-color: white;
     padding: 20px;
-    width: 770px;
-    height: 426px;
+    width: 790px;
+    height: 500px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-  
-  button {
-    padding: 10px 15px;
-    background-color: #0077B6;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-style: "Inter", sans-serif;
-    font-weight: 700;
-  }
-  
-  button:hover {
-    background-color: #005f8d;
+    position: fixed;
   }
   
   .add-button-container {
     margin-bottom: 20px;
-    border-radius: 12px;
+    border-radius: 5px;
     display: flex;          /* Flexbox for layout */
-    justify-content: flex-start; /* Aligns button to the left */
-    width: 100%;            /* Ensures it takes full width */
+    justify-content: center;       /* Ensures it takes full width */
     margin-top: 10px;
     padding-left: 15px;     /* Creates space on the left side */
-  }
-  
-  
-  .add-button-container button {
     width: 85px;            /* Fixed width */
     height: 33px;           /* Fixed height */
   }
 
-  
+.logout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logout-modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 350px;
+  width: 90%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.logout-title {
+  margin-bottom: 1.5rem;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.logout-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.logout-leave {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-stay {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-leave:hover, .logout-stay:hover{
+  background-color:#606060
+}
+
+.GIF {
+  position: relative;
+  background-image: url('../GIF/Kyutie.gif');
+  height: 200px;
+  width: 200px;
+  background-size: 200px;
+  margin-left: 20%;
+}
+
+.Loading {
+  position: absolute;
+    margin-top: 150px;
+    bottom: 80px;
+    top: 40px;
+    right: 40px;
+    left: 270px;
+    width: auto;
+    height: auto;
+}
+
+.Loading-top{
+  position: absolute;
+  margin-top: 10px;
+  height: 30px;
+  background-color: #a3c5d4;
+  padding: 10px;
+  border-radius: 5px;
+}
+.Loading-top2{
+  position: absolute;
+  margin-top: 100px;
+  background-color: #a3c5d4;
+  padding: 10px;
+  border-radius: 5px;
+}
+.Loading-top3{
+  position: absolute;
+  margin-top: 200px;
+  background-color: #a3c5d4;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.Loading-top4{
+  position: absolute;
+  margin-top: 300px;
+  background-color: #a3c5d4;
+  padding: 10px;
+  border-radius: 5px;
+}
+.Loading-top5{
+  position: absolute;
+  margin-top: 400px;
+  height: 150;
+  background-color: #a3c5d4;
+  padding: 10px;
+  border-radius: 5px;
+}
+.Loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Optional: Differentiated widths for variety */
+.Loading-top th:nth-child(1),
+.Loading-top2 th:nth-child(1),
+.Loading-top3 th:nth-child(1),
+.Loading-top4 th:nth-child(1),
+.Loading-top5 th:nth-child(1) {
+  width: 12rem;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
