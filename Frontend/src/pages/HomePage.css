@@ -4,63 +4,6 @@
     display: flex;
   }
   
-  /* Sidebar (Dashboard) */
-  .sidebar {
-    position: fixed;
-    padding: 25px;
-    height: 100%;
-    width: 200px;
-    background-color: #ffffff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    border-right: 1px solid #d9d9d9; /* Light gray right border line */
-    z-index: 2; /* HIGHER to appear on top */
-    padding-top: 100px; /* Push content below the overlapped navbar */
-  }
-  
-  .sidebar h2 {
-    font-size: auto;
-    color: #0077B6;
-  }
-  
-  .sidebar ul {
-    margin-top: 10%;
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 5px;
-    border-color: #D7D7D7;
-    border-style: solid;
-  }
-  .sidebar ul:hover li:hover {
-    background-color:#D7D7D7;
-    cursor: pointer;
-  }
-  
-  .sidebar ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-  }
-  
-  .sidebar ul li a:hover {
-    color: #0077B6;
-  }
-
-  .Logo-Sidebar{
-    position: absolute;
-    height: 5px;
-    width: 150px;
-    padding: 30px;
-    background-image: url('../Image/Group\ 47951.png');
-    background-repeat: no-repeat;
-    background-size: 150px;
-    top: 10px;
-    left: 50px;
-  }
 
   .Right-content {
     height: auto;
@@ -112,7 +55,9 @@
     left: 6px;
     width:35px;
     height: 35px;
-    background-color: #333;
+    background-image: url('../Image/PFP1.png');
+    background-size: 35px;
+    background-repeat: no-repeat;
     border-radius: 50%;
   }
   .Profile-Logout{
@@ -175,15 +120,15 @@
   }
 
   .Sort {
-    right: 35%;   
+    right: 400px;
     position: absolute;
     margin-top: 30px;
-    width: 174px;
+    width: 200px;
     padding: 5px;
-    border-color: #0077B6;
     border-style: solid;
     border-radius: 12px;
     background-color: #F8F6F6;
+    border-color: #005f8a;
     font-size: 13px;
     color: #606060;
     z-index: 1;
@@ -193,9 +138,9 @@
     flex-direction: column;
     height: auto;
     position: absolute;
-    right: 35%;   
+    right: 400px;   
     margin-top: 65px;
-    width: 170px;
+    width: 197px;
     border-color: #0077B6;
     border-style: solid;
     border-radius: 12px;
@@ -227,11 +172,12 @@
     right: 80px;
     position: absolute;
     margin-top: 30px;
-    width: 25%;
+    width: 300px;
     padding: 5px;
     border-style: solid;
     border-radius: 12px;
     background-color: #F8F6F6;
+    border-color: #005f8a;
     font-size: 13px;
     color: #606060;
   }
@@ -376,6 +322,7 @@
     align-items: center;
     z-index: 1000; /* Ensure modal appears above other content */
   }
+  
   .modal input{
     color:#606060;
   }
@@ -424,8 +371,31 @@
     height: 500px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    animation: fadeIn 0.3s ease forwards;
+    z-index: 1000;
+     transform: translateY(-20px);
+    opacity: 0;
+    animation: slideUp 0.3s ease forwards;
+    }
+
+  @keyframes fadeIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
   }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Keyframes for modal content */
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+  
   
   .add-button-container {
     margin-bottom: 20px;
@@ -519,21 +489,21 @@
   position: absolute;
   margin-top: 10px;
   height: 30px;
-  background-color: #a3c5d4;
+  background-color: #e5e5e5;
   padding: 10px;
   border-radius: 5px;
 }
 .Loading-top2{
   position: absolute;
   margin-top: 100px;
-  background-color: #a3c5d4;
+  background-color: #e5e5e5;
   padding: 10px;
   border-radius: 5px;
 }
 .Loading-top3{
   position: absolute;
   margin-top: 200px;
-  background-color: #a3c5d4;
+  background-color: #e5e5e5;
   padding: 10px;
   border-radius: 5px;
 }
@@ -541,7 +511,7 @@
 .Loading-top4{
   position: absolute;
   margin-top: 300px;
-  background-color: #a3c5d4;
+  background-color: #e5e5e5;
   padding: 10px;
   border-radius: 5px;
 }
@@ -549,7 +519,7 @@
   position: absolute;
   margin-top: 400px;
   height: 150;
-  background-color: #a3c5d4;
+  background-color: #e5e5e5;
   padding: 10px;
   border-radius: 5px;
 }
@@ -572,5 +542,33 @@
   }
   50% {
     opacity: 0.4;
+  }
+}
+.Boxtable {
+  background-color: white;
+  opacity: 1;
+}
+
+.DataName2 {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+/* Animation for table rows */
+.fade-in-row {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

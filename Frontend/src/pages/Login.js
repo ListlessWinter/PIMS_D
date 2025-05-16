@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-
 const clientId = "901238362479-qhi62371a9f08ma2jmlmbh1vbctruivj.apps.googleusercontent.com";
 
 //Google Api login
@@ -14,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
+    document.title = "PIMS | Login";
     const initClient = () => {
       gapi.load("client:auth2", () => {
         gapi.client.init({
@@ -87,7 +87,8 @@ const Login = () => {
     <div className="box">
       <div className="Logo"></div>
       <h2>{isRegistering ? "Register" : "Login"}</h2>
-
+      <div>
+    </div>
       {/* Manual Login/Register Form */}
       <form onSubmit={handleManualLogin}>
         {isRegistering && (

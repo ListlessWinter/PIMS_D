@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"; 
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Layou.css';
+import DateTimeDisplay from "./DateTimeDisplay";
 
 export default function Layout({ children, username = "Admin", onLogout }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const [showWelcome, setShowWelcome] = useState(false); // Initialize as false
+  const [showWelcome, setShowWelcome] = useState(false); // Initialize as false\
+  const firstName = username.split(' ')[0];
 
   const confirmLogout = () => {
     localStorage.removeItem("token");
@@ -42,7 +44,7 @@ export default function Layout({ children, username = "Admin", onLogout }) {
       {/* ✅ Welcome Popup */}
       {showWelcome && (
         <div className="welcome-popup">
-          Welcome back, {username}!
+          Welcome back, {firstName}!
         </div>
       )}
 
@@ -62,37 +64,34 @@ export default function Layout({ children, username = "Admin", onLogout }) {
       {/* Sidebar */}
       <div className="sidebar">
         <div className="Logo-Sidebar"></div>
+
+        <div className="UserProfile"></div>
+        <h3 className="NameSidebar">{firstName}</h3>
+        <h6 className="adminSidebar">Admin</h6>
         <h2>Main</h2>
         <ul>
-          <li
-            onClick={() => navigate('/home')}
-            style={{
-              cursor: 'pointer',
-              backgroundColor: isActive('/home') ? '#D7D7D7' : 'transparent'
-            }}
-          >
-            Data
-          </li>
-          <li
-            onClick={() => navigate('/profile')}
-            style={{
-              cursor: 'pointer',
-              backgroundColor: isActive('/profile') ? '#D7D7D7' : 'transparent'
-            }}
-          >
-            Profile
-          </li>
-        </ul>
-        <h2>Support</h2>
-        <ul>
-          <li style={{ cursor: 'pointer' }}>Reports</li>
-          <li style={{ cursor: 'pointer' }}>Settings</li>
-        </ul>
+        <li
+          onClick={() => navigate('/home')}
+          className={`nav-item MainButtons ${isActive('/home') ? 'active' : ''}`}
+        >
+           <div className={`LogoData ${isActive('/home') ? 'active-icon' : ''}`}></div>
+          Data
+        </li>
+        <li
+          onClick={() => navigate('/profile')}
+          className={`nav-item MainButtons ${isActive('/profile') ? 'active' : ''}`}
+        >
+          <div className={`LogoProfile ${isActive('/profile') ? 'active-icon' : ''}`}></div>
+          Prescriptions
+        </li>
+      </ul>
+
       </div>
 
       {/* Main Content */}
       <div className="Right-content">
         <div className="Header">
+          <div className="datetime"><DateTimeDisplay /></div>
           <div className="Profile-box">
             <div className="profile"></div>
             <div className="Profile-Logout">

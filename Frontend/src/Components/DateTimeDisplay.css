@@ -1,0 +1,18 @@
+.datetime-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+  align-items: center;
+}
+
+.label {
+  color: #555;
+  margin-right: 5px;
+  font-size: 13px;
+}
+
+.value {
+  font-weight: bold;
+  font-size: 13px;
+}

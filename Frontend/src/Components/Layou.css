@@ -1,12 +1,4 @@
-.sa{
-    display: absolute;
-    position: absolute;
-    height: 10%;
-    width: 100%;
-    bottom: 0;
-    right: 0;
-    background-color: aqua;
-}
+
 
 .welcome-popup {
   position: fixed;
@@ -20,6 +12,15 @@
   z-index: 9999;
   font-size: 16px;
   animation: fadeInOut 3s ease-in-out;
+}
+
+.Messages{
+  height: 50%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border-color: #D7D7D7;
+  border-style: solid;
+  overflow-y: scroll;
 }
 
 @keyframes fadeInOut {
@@ -43,4 +44,178 @@
     transform: translateY(-10px);
     animation-timing-function: ease-in;
   }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Logout Modal Animation */
+.logout-modal {
+  animation: popIn 0.3s ease-out forwards;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  max-width: 400px;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Modal overlay */
+.logout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+}
+
+  .sidebar {
+    position: fixed;
+    padding: 25px;
+    height: 100%;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #d9d9d9; /* Light gray right border line */
+    z-index: 2; /* HIGHER to appear on top */
+    padding-top: 100px; /* Push content below the overlapped navbar */
+  }
+  
+  .sidebar h2 {
+    font-size: auto;
+    color: #0077B6;
+  }
+  
+  .sidebar ul {
+    margin-top: 10%;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 5px;
+    border-color: #D7D7D7;
+    border-style: solid;
+    text-align: center;
+  }
+  .sidebar ul:hover li:hover {
+    cursor: pointer;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .sidebar ul li a:hover {
+    color: #0077B6;
+  }
+
+  .Logo-Sidebar{
+    position: absolute;
+    height: 5px;
+    width: 150px;
+    padding: 30px;
+    background-image: url('../Image/Group\ 47951.png');
+    background-repeat: no-repeat;
+    background-size: 150px;
+    top: 10px;
+    left: 50px;
+  }
+  .nav-item {
+  cursor: pointer;
+  background-color: transparent;
+  padding: 10px; /* Optional styling */
+}
+
+.nav-item.active {
+  background-color: #0077B6;
+  color: #ffffff;
+  border: none;
+}
+
+.MainButtons {
+  color: #474747;
+}
+
+.datetime{
+  position: absolute;
+  right: 280px;
+}
+
+.LogoData{
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background-image: url('../Image/Database.svg');
+  
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
+.LogoProfile{
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background-image: url('../Image/Group\ 47952.svg');
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
+/* ACTIVE STATE (when on current page) */
+.LogoData.active-icon {
+  background-image: url('../Image/Database\ \(1\).svg'); /* brighter or colored version */
+}
+
+.LogoProfile.active-icon {
+  background-image: url('../Image/Vector.svg');
+}
+
+.UserProfile{
+  margin-left: 25px;
+  height: 150px;
+  width: 150px;
+  border-radius: 12px;
+  border-color: #d9d9d9;
+  border-style: solid;
+  background-image: url('../Image/PFP1.png');
+  background-repeat: no-repeat;
+  background-size: 150px;
+}
+
+.NameSidebar {
+  margin-top: 25px;
+  border-radius: 12px;
+  padding: 5px;
+  border-color: #0077B6;
+  border-style: solid;
+  color: #474747;
+  text-align: center;
+}
+
+.adminSidebar {
+  top: 300px;
+  right: 30px;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  padding: 5px;
 }

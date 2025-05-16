@@ -10,45 +10,78 @@
 }
 
 .image{
-    position: fixed;
-    background-color: rgb(255, 255, 255);
-    height: 200px;
-    width: 250px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    right: 280px;
+    height: 100px;
     margin-right: 20px;
     border-radius: 10px;
-    border-color: #D7D7D7;
-    border-style: solid;
+    background-size: 300px;
+    background-position: center;
 }
 .UserDeets{
-
     position: absolute;
     background-color: rgb(255, 255, 255);
     left: 20px;
-    top: 250px;
-    right: 20px;
+    top: 120px;
+    right: 300px;
     bottom: 20px;
     border-radius: 10px;
     border-color: #D7D7D7;
     border-style: solid;
+    padding: 10px;
+}
+
+.Docinfo{
+  color: #666;
+  padding: 20px;
+  position: absolute;
+  right: 20px;
+  width: 220px;
+  top: 20px;
+  bottom: 20px;
+  border-radius: 10px;
+  border-color: #D7D7D7;
+  border-style: solid;
+}
+
+.FontData{
+  color: #242424;
+}
+
+.FrontData1{
+  color: #005f8a;
+}
+
+.credits{
+  font-size: 10px;
 }
 
 .Name{
     display: fixed;
     margin-top: 20px;
+    font-size: small;
 }
 .Admin-ID{
     display: fixed;
     margin-top: 20px;
+    font-size: small;
 }
 
 .textbox{
     margin-top: 5px;
-    height: 50px;
+    height: 35px;
     width: auto;
-    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     border-color: #D7D7D7;
     border-style: solid;
+    text-align: left;
+    margin-top: 5px;
+    padding-top: 15px;
+    padding-left: 15px;
+    font-size: 18px;
+    font-weight: bold;
 }
 .UserDeets2{
     display: fixed;
@@ -95,4 +128,105 @@
   50% {
     opacity: 0.4;
   }
+}
+
+.image1{
+    position: fixed;
+    background-color: #e5e5e5;
+    height: 200px;
+    width: 250px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+.UserDeets1{
+
+    position: absolute;
+    background-color: #e5e5e5;
+    left: 20px;
+    top: 250px;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 10px;
+}
+
+.Name1{
+    display: fixed;
+    margin-top: 20px;
+    color: white;
+}
+.Admin-ID1{
+    display: fixed;
+    margin-top: 20px;
+    color: white;
+}
+
+.textbox1{
+    margin-top: 5px;
+    height: 50px;
+    width: auto;
+    background-color: #e5e5e5;
+    border-radius: 10px;
+}
+.UserDeets21{
+    display: fixed;
+    width: 500px;
+    height: 200px;
+    margin-left: 270px;
+}
+
+.search-bar-container {
+  padding: 10px;
+  background-color: #fff;
+  /* Remove sticky/fixed positioning */
+  position: static;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Optional subtle divider */
+}
+
+.inventory-search-bar {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Optional: Scroll container styles */
+.inventory-list {
+  position: absolute;
+  top: 75px;
+  left: 20px;
+  right: 10px;
+  bottom: 20px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.inventory-item {
+  background-color: #f9f9f9;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inventory-item:hover {
+  background-color: #eaeaea;
+}
+
+.item-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.doctor-name {
+  font-weight: bold;
+}
+
+.prescription-date {
+  font-style: italic;
+  color: #666;
 }

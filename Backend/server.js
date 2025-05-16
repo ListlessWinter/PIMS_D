@@ -17,12 +17,13 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
-app.options("*", cors()); // ✅ Allow preflight
+app.options("*", cors());
 
 app.use(passport.initialize());
 
 // Routes
 app.use("/auth", authRoutes);
+app.use('/api/prescriptions', inventoryRoutes);
 
 // MongoDB Connection
 mongoose.connect('mongodb+srv://Dolera:april123@cluster0.fp1ojbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
